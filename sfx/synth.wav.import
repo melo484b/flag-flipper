@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/synth.wav-de456d26e1bde8f3c04ff80b5a77817a.sample"
+
+[deps]
+
+source_file="res://sfx/synth.wav"
+dest_files=[ "res://.import/synth.wav-de456d26e1bde8f3c04ff80b5a77817a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
