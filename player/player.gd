@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
 
+const JUMP_MAX = 3
+
 export var speed: int = 200
 export var jump_power: int = -1000
 export var gravity: int = 3000
 export var acceleration: float = 0.25
+
 var velocity: Vector2 = Vector2.ZERO
 var direction: int = -1
 var jumps: int = 2
@@ -37,7 +40,7 @@ func get_input() -> void:
 			velocity.y = jump_power
 	if Input.is_action_just_pressed("reverse") and not fatigued:
 		reverse_sfx.play()
-		jumps = int(clamp(jumps + 1, 1, 2))
+		jumps = int(clamp(jumps + 1, 1, JUMP_MAX))
 		velocity.x = 0
 		reverse_direction()
 		flag.spin()
@@ -80,4 +83,4 @@ func _on_sprint_timeout() -> void:
 
 
 func _on_jump_regen_timeout() -> void:
-	jumps = int(clamp(jumps + 1, 1, 2))
+	jumps = int(clamp(jumps + 1, 1, JUMP_MAX))
