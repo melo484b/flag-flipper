@@ -4,10 +4,11 @@ extends Node
 signal spawning
 
 
-var spawn_parameter_x1: float = 32.0
-var spawn_parameter_x2: float = 992.0
-var spawn_parameter_y1: float = 64.0
-var spawn_parameter_y2: float = 544.0
+const SPAWN_X1: float = 32.0
+const SPAWN_X2: float = 992.0
+const SPAWN_Y1: float = 64.0
+const SPAWN_Y2: float = 544.0
+
 var spawn_position: Vector2 = Vector2()
 var block: PackedScene = preload("res://map/block.tscn")
 var rng = RandomNumberGenerator.new()
@@ -34,8 +35,8 @@ func spawn_block() -> void:
 
 func generate_spawn_position() -> void:
 	rng.randomize()
-	var x_pos = rng.randf_range(spawn_parameter_x1, spawn_parameter_x2)
-	var y_pos = rng.randf_range(spawn_parameter_y1, spawn_parameter_y2)
+	var x_pos = rng.randf_range(SPAWN_X1, SPAWN_X2)
+	var y_pos = rng.randf_range(SPAWN_Y1, SPAWN_Y2)
 	spawn_position = Vector2(x_pos, y_pos)
 
 
