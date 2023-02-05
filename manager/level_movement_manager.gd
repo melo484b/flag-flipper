@@ -1,14 +1,14 @@
 extends Node2D
 
 
+const FLOOR_START_POS: Vector2 = Vector2(0, 554)
+const CEILING_START_POS: Vector2 = Vector2(0, 0)
+
 var wall_direction: int = 1
 var floor_direction: int = -1
 var ceiling_direction: int = 1
 var travel_speed: float = 0.25
 var speed_increment: float = 0.05
-
-const TOP_POS = 23.0
-const BOTTOM_POS = 23.0
 
 
 onready var wall_tiles: TileMap = $walls
@@ -39,6 +39,13 @@ func reverse_direction() -> void:
 	wall_direction *= -1
 	floor_direction *= -1
 	ceiling_direction *= -1
+
+
+func reset() -> void:
+	floor_tiles.position = FLOOR_START_POS
+	ceiling_tiles.position = CEILING_START_POS
+	travel_speed = 0.25
+	$good_bye.start()
 
 
 func _on_speed_up_timeout() -> void:
