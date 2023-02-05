@@ -46,10 +46,11 @@ func get_input() -> void:
 		flag.spin()
 		fatigued = true
 		fatigue_timer.start()
+		speed *= 1.06
 	if Input.is_action_just_pressed("sprint"):
 		sprint_sfx.play()
 		acceleration = 1.0
-		speed = 600
+		speed += 400
 		sprint_timer.start()
 
 
@@ -79,7 +80,7 @@ func _on_Area2D_area_entered(area) -> void:
 
 func _on_sprint_timeout() -> void:
 	acceleration = 0.25
-	speed = 200
+	speed -= 400
 
 
 func _on_jump_regen_timeout() -> void:
