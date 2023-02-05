@@ -4,6 +4,7 @@ extends Node2D
 var leaving = false
 
 onready var destruction_timer: Timer = $destruction_timer
+onready var pickup_sfx: Node = $pickup
 
 
 func _physics_process(_delta) -> void:
@@ -12,6 +13,7 @@ func _physics_process(_delta) -> void:
 
 
 func get_collected() -> void:
+	pickup_sfx.play()
 	Scorekeeper.increment_score()
 	destruction_timer.start()
 	leaving = true
