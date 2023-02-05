@@ -15,6 +15,7 @@ func new_game() -> void:
 	Scorekeeper.score = 0
 	spawn_player()
 	level_movement_manager.reset()
+	spawn_manager.start_spawning()
 
 
 func spawn_player() -> void:

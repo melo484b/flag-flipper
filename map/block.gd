@@ -1,13 +1,14 @@
+class_name Block
 extends StaticBody2D
 
 
-export var size: String = "single"
-
+var size: String = "single"
 var sizes: Array = ["single", "double", "quad"]
 var collision_shape_extents: Array = [16, 32, 64]
 var width: int = 32
 var coins: int = 1
 var leaving: bool = false
+var rng = RandomNumberGenerator.new()
 var single_texture: Texture = load("res://sprite/single_block.png")
 var double_texture: Texture = load("res://sprite/double_block.png")
 var quad_texture: Texture = load("res://sprite/quad_block.png")
@@ -20,8 +21,12 @@ onready var collider_shape: CollisionShape2D = $CollisionShape2D
 onready var sprite: Sprite = $Sprite
 
 
+func _init():
+	rng.randomize()
+	set_size(rng.randi_range(0, 2))
+
+
 func _ready() -> void:
-	initialize_shape()
 	spawn_coins()
 	$expiration_timer.start()
 
@@ -54,10 +59,6 @@ func initialize_shape() -> void:
 			coins = 3
 		_:
 			pass
-
-
-func get_width() -> int:
-	return width
 
 
 func spawn_coins() -> void:

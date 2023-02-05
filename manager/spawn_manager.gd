@@ -16,20 +16,29 @@ onready var spawn_timer: Timer = $spawn_timer
 
 
 func _ready() -> void:
+	rng.randomize()
 	set_timer_length()
 
 
+func start_spawning() -> void:
+	spawn_timer.start()
+
+
 func set_timer_length() -> void:
-	rng.randomize()
-	spawn_timer.wait_time = rng.randf_range(0.5, 2.0)
+	spawn_timer.wait_time = rng.randf_range(0.5, 2.5)
 
 
 func spawn_block() -> void:
+	var block_instance = create_block()
+	get_parent().add_child(block_instance)
+	block_instance.initialize_shape()
+
+
+func create_block() -> Block:
 	var new_block = block.instance()
-	new_block.set_size(rng.randi_range(0, 2))
 	generate_spawn_position()
 	new_block.position = spawn_position
-	get_parent().add_child(new_block)
+	return new_block
 
 
 func generate_spawn_position() -> void:
