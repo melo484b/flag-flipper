@@ -14,6 +14,10 @@ config/name="reverse-flag"
 run/main_scene="res://map/level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Scorekeeper="*res://singleton/scorekeeper.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
