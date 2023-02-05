@@ -1,18 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://map/horizontal.tscn" type="PackedScene" id=1]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://manager/level_movement_manager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://manager/spawn_manager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://map/vertical.tscn" type="PackedScene" id=5]
 [ext_resource path="res://object/death_zone.tscn" type="PackedScene" id=6]
+[ext_resource path="res://singleton/scorekeeper.tscn" type="PackedScene" id=7]
 [ext_resource path="res://map/level.gd" type="Script" id=8]
+[ext_resource path="res://ui/UI.tscn" type="PackedScene" id=9]
 
 [node name="level" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 498, 530 )
+[node name="scorekeeper" parent="." instance=ExtResource( 7 )]
+
+[node name="UI" parent="." instance=ExtResource( 9 )]
 
 [node name="level_movement_manager" parent="." instance=ExtResource( 3 )]
 
@@ -28,8 +30,23 @@ position = Vector2( 0, 544 )
 [node name="death_area" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, 144 )
 
+[node name="death_area3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 472, -120 )
+rotation = 1.5708
+
+[node name="death_area4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1904, -128 )
+rotation = 1.5708
+
+[node name="death_area2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, -816 )
+
+[connection signal="start_game" from="UI" to="." method="_on_UI_start_game"]
 [connection signal="spawning" from="spawn_manager" to="." method="_on_spawn_manager_spawning"]
 [connection signal="death" from="death_area" to="." method="_on_death_area_death"]
+[connection signal="death" from="death_area3" to="." method="_on_death_area_death"]
+[connection signal="death" from="death_area4" to="." method="_on_death_area_death"]
+[connection signal="death" from="death_area2" to="." method="_on_death_area_death"]
 
 [editable path="level_movement_manager/floor"]
 [editable path="level_movement_manager/ceiling"]
