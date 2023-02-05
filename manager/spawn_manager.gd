@@ -10,9 +10,11 @@ var spawn_parameter_y1: float = 64.0
 var spawn_parameter_y2: float = 544.0
 var spawn_position: Vector2 = Vector2()
 var block: PackedScene = preload("res://map/block.tscn")
+var coin: PackedScene = preload("res://object/Coin.tscn")
 var rng = RandomNumberGenerator.new()
 
-onready var spawn_timer: Timer = $spawn_timer
+onready var block_spawn_timer: Timer = $spawn_timer
+onready var coin_spawn_timer: Timer = $coin_spawn_timer
 
 
 func _ready() -> void:
@@ -21,17 +23,25 @@ func _ready() -> void:
 
 
 func start_spawning() -> void:
-	spawn_timer.start()
+	block_spawn_timer.start()
+	coin_spawn_timer.start()
 
 
 func set_timer_length() -> void:
-	spawn_timer.wait_time = rng.randf_range(0.5, 1.8)
+	block_spawn_timer.wait_time = rng.randf_range(0.5, 1.8)
 
 
 func spawn_block() -> void:
 	var block_instance = create_block()
 	get_parent().add_child(block_instance)
 	block_instance.initialize_shape()
+
+
+func spawn_coin() -> void:
+	var coin_instance = coin.instance()
+	generate_spawn_position()
+	coin_instance.position = spawn_position
+	get_parent().add_child(coin_instance)
 
 
 func create_block() -> Block:
@@ -50,3 +60,7 @@ func generate_spawn_position() -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	emit_signal("spawning")
+
+
+func _on_coin_spawn_timer_timeout():
+	spawn_coin()

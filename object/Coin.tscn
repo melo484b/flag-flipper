@@ -15,7 +15,8 @@
 [ext_resource path="res://sfx/sfx_player.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 24.0
+resource_local_to_scene = true
+radius = 26.0192
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -37,7 +38,7 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 2
+frame = 12
 playing = true
 
 [node name="destruction_timer" type="Timer" parent="."]
