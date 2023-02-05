@@ -8,6 +8,7 @@ var player: PackedScene = preload("res://player/player.tscn")
 onready var spawn_manager: Node = $spawn_manager
 onready var level_movement_manager: Node2D = $level_movement_manager
 onready var ui: Control = $UI
+onready var game_over_sfx: Node = $game_over_sfx
 
 
 func new_game() -> void:
@@ -25,8 +26,8 @@ func _on_spawn_manager_spawning() -> void:
 	spawn_manager.spawn_block()
 
 
-# TODO: End the game
 func _on_death_area_death() -> void:
+	game_over_sfx.play()
 	ui.game_over()
 
 
