@@ -14,6 +14,12 @@ onready var hover_sfx: Node = $hover_sfx
 
 
 func _process(_delta) -> void:
+	if Input.is_action_just_pressed("mute"):
+		if AudioServer.is_bus_mute(0):
+			AudioServer.set_bus_mute(0, false)
+		else:
+			AudioServer.set_bus_mute(0, true)
+		
 	update_score()
 
 

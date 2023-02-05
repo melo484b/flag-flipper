@@ -25,7 +25,7 @@ func start_spawning() -> void:
 
 
 func set_timer_length() -> void:
-	spawn_timer.wait_time = rng.randf_range(0.5, 2.5)
+	spawn_timer.wait_time = rng.randf_range(0.5, 1.8)
 
 
 func spawn_block() -> void:
