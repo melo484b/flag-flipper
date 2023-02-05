@@ -8,8 +8,9 @@ Shift: Dash<br>
 R: Reverse<br>
 M: Mute audio<br>
 ## Mechanics:
-Player has a maximum of 2 jumps<br>
+Player has a maximum of 3 jumps<br>
 A jump regenerates every half second, or when the player presses reverse (R)
+After 20 seconds the obstacles speed up significantly
 
 
 ## Acknowledgements:<br>
