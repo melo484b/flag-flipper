@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 
-var velocity: Vector2 = Vector2.ZERO
 export var speed: int = 200
 export var jump_power: int = -1000
 export var gravity: int = 3000
 export var acceleration: float = 0.25
+var velocity: Vector2 = Vector2.ZERO
 var direction: int = -1
 var jumps: int = 2
 var fatigued: bool = false
@@ -13,15 +13,12 @@ var fatigued: bool = false
 onready var flag: AnimatedSprite = $flag
 onready var fatigue_timer: Timer = $fatigue
 onready var sprint_timer: Timer = $sprint
+onready var jump_timer: Timer = $jump_regen
 onready var wall_detector: Area2D = $Area2D
 onready var hurt_sfx: Node = $hurt
 onready var jump_sfx: Node = $jump
 onready var sprint_sfx: Node = $sprint_sfx
 onready var reverse_sfx: Node = $reverse
-
-
-func _ready() -> void:
-	pass
 
 
 func _physics_process(delta) -> void:
@@ -34,6 +31,7 @@ func _physics_process(delta) -> void:
 func get_input() -> void:
 	if Input.is_action_just_pressed("jump"):
 		if jumps > 0:
+			jump_timer.start()
 			jump_sfx.play()
 			jumps -= 1
 			velocity.y = jump_power
@@ -79,3 +77,7 @@ func _on_Area2D_area_entered(area) -> void:
 func _on_sprint_timeout() -> void:
 	acceleration = 0.25
 	speed = 200
+
+
+func _on_jump_regen_timeout() -> void:
+	jumps = int(clamp(jumps + 1, 1, 2))

@@ -32,10 +32,14 @@ position = Vector2( 0, -11 )
 
 [node name="flag" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -12 )
-frame = 7
+frame = 0
 
 [node name="fatigue" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="jump_regen" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["PLAYER"]]
 collision_layer = 3
@@ -81,6 +85,7 @@ stream = ExtResource( 8 )
 stream = ExtResource( 8 )
 
 [connection signal="timeout" from="fatigue" to="." method="_on_fatigue_timeout"]
+[connection signal="timeout" from="jump_regen" to="." method="_on_jump_regen_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="sprint" to="." method="_on_sprint_timeout"]
