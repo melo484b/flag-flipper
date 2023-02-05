@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="reverse-flag"
+config/name="Flag Flipper"
 run/main_scene="res://map/level.tscn"
 config/icon="res://icon.png"
 
