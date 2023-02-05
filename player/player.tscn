@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://sprite/flag-guy.png" type="Texture" id=2]
@@ -7,7 +7,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 12.5 )
 
-[node name="player" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 5 )
+
+[node name="player" type="KinematicBody2D" groups=["PLAYER"]]
+collision_layer = 3
+collision_mask = 7
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -22,8 +27,24 @@ position = Vector2( 0, -11 )
 
 [node name="flag" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, -12 )
+frame = 0
 
 [node name="fatigue" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="Area2D" type="Area2D" parent="." groups=["PLAYER"]]
+collision_layer = 3
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -5 )
+shape = SubResource( 2 )
+
+[node name="sprint" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="fatigue" to="." method="_on_fatigue_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="sprint" to="." method="_on_sprint_timeout"]

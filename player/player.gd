@@ -10,8 +10,10 @@ var direction: int = -1
 var jumps: int = 2
 var fatigued: bool = false
 
-onready var flag = $flag
-onready var fatigue_timer = $fatigue
+onready var flag: AnimatedSprite = $flag
+onready var fatigue_timer: Timer = $fatigue
+onready var sprint_timer: Timer = $sprint
+onready var wall_detector: Area2D = $Area2D
 
 
 func _ready() -> void:
@@ -31,17 +33,41 @@ func get_input() -> void:
 			jumps -= 1
 			velocity.y = jump_power
 	if Input.is_action_just_pressed("reverse") and not fatigued:
-		jumps = clamp(jumps + 1, 1, 2)
+		jumps = int(clamp(jumps + 1, 1, 2))
 		velocity.x = 0
-		direction *= -1
+		reverse_direction()
 		flag.spin()
 		fatigued = true
 		fatigue_timer.start()
+	if Input.is_action_just_pressed("sprint"):
+		acceleration = 1.0
+		speed = 600
+		sprint_timer.start()
 
 
 func game_movement() -> void:
 	velocity.x = lerp(velocity.x, direction * speed, acceleration)
+	
+
+func reverse_direction() -> void:
+	direction *= -1
 
 
-func _on_fatigue_timeout():
+func _on_fatigue_timeout() -> void:
 	fatigued = false
+
+
+func _on_Area2D_body_entered(body) -> void:
+	if body.is_in_group("WALL"):
+		reverse_direction()
+		flag.spin()
+
+
+func _on_Area2D_area_entered(area) -> void:
+	if area.is_in_group("DEATH"):
+		queue_free()
+
+
+func _on_sprint_timeout():
+	acceleration = 0.25
+	speed = 200
