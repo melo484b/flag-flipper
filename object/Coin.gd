@@ -1,9 +1,6 @@
 extends Node2D
 
 
-signal collected
-
-
 var leaving = false
 
 onready var destruction_timer: Timer = $destruction_timer
@@ -11,11 +8,11 @@ onready var destruction_timer: Timer = $destruction_timer
 
 func _physics_process(_delta):
 	if leaving:
-		position.y -= 20
+		position.y -= 30
 
 
 func get_collected() -> void:
-	emit_signal("collected")
+	Scorekeeper.increment_score()
 	destruction_timer.start()
 	leaving = true
 
