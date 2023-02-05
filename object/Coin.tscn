@@ -1,0 +1,44 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://sprite/coin/coin6.png" type="Texture" id=1]
+[ext_resource path="res://sprite/coin/coin7.png" type="Texture" id=2]
+[ext_resource path="res://sprite/coin/coin5.png" type="Texture" id=3]
+[ext_resource path="res://sprite/coin/coin8.png" type="Texture" id=4]
+[ext_resource path="res://sprite/coin/coin9.png" type="Texture" id=5]
+[ext_resource path="res://sprite/coin/coin10.png" type="Texture" id=6]
+[ext_resource path="res://sprite/coin/coin3.png" type="Texture" id=7]
+[ext_resource path="res://sprite/coin/coin4.png" type="Texture" id=8]
+[ext_resource path="res://sprite/coin/coin1.png" type="Texture" id=9]
+[ext_resource path="res://sprite/coin/coin2.png" type="Texture" id=10]
+[ext_resource path="res://object/Coin.gd" type="Script" id=11]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[node name="Coin" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+playing = true
+
+[node name="destruction_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="destruction_timer" to="." method="_on_destruction_timer_timeout"]
