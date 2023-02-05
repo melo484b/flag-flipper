@@ -6,7 +6,7 @@ var leaving = false
 onready var destruction_timer: Timer = $destruction_timer
 
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if leaving:
 		position.y -= 30
 
@@ -22,5 +22,5 @@ func _on_Area2D_area_entered(area) -> void:
 		get_collected()
 
 
-func _on_destruction_timer_timeout():
+func _on_destruction_timer_timeout() -> void:
 	queue_free()

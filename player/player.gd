@@ -68,6 +68,6 @@ func _on_Area2D_area_entered(area) -> void:
 		queue_free()
 
 
-func _on_sprint_timeout():
+func _on_sprint_timeout() -> void:
 	acceleration = 0.25
 	speed = 200
