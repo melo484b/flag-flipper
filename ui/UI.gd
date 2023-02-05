@@ -7,7 +7,7 @@ signal start_game
 onready var button_container: CenterContainer = $button_container
 onready var button: Button = $button_container/MarginContainer/PanelContainer/MarginContainer/Button
 onready var game_over_container: MarginContainer = $game_over_container
-onready var score_label: Label = $CenterContainer/HBoxContainer/score_label
+onready var score_label: Label = $CanvasLayer/CenterContainer/HBoxContainer/score_label
 onready var game_over_timer: Timer = $game_over_timer
 
 
