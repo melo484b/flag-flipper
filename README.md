@@ -6,6 +6,9 @@ Entry for Mini Jame Gam. Theme: Reverse, Special object: A flag
 Space/W/Up: Jump<br>
 Shift: Dash<br>
 R: Reverse<br>
+## Mechanics:
+Player has a maximum of 2 jumps<br>
+A jump regenerates every half second, or when the player presses reverse (R)
 
 
 ## Acknowledgements:<br>
