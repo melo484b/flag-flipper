@@ -5,7 +5,8 @@ Entry for Mini Jame Gam. Theme: Reverse, Special object: A flag
 ## Controls:
 Space/W/Up: Jump<br>
 Shift: Dash<br>
-R: Reverse<br>
+R: Reverse player<br>
+E: Reverse course<br>
 M: Mute audio<br>
 ## Mechanics:
 Player has a maximum of 3 jumps<br>

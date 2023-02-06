@@ -1,11 +1,11 @@
 extends Node2D
 
 
-const FLOOR_START_POS: Vector2 = Vector2(0, 554)
-const CEILING_START_POS: Vector2 = Vector2(0, 0)
+const FLOOR_START_POS: Vector2 = Vector2(-2, 244)
+const CEILING_START_POS: Vector2 = Vector2(-2, -236)
 
 var wall_direction: int = 1
-var floor_direction: int = -1
+var floor_direction: int = 1
 var ceiling_direction: int = 1
 var travel_speed: float = 0.25
 var speed_increment: float = 0.05
@@ -19,7 +19,9 @@ onready var ceiling_tiles: TileMap = $ceiling
 func _physics_process(_delta) -> void:
 	move_floor()
 	move_ceiling()
-	if Input.is_action_just_pressed("reverse"):
+	if ceiling_tiles.position > FLOOR_START_POS or floor_tiles.position < CEILING_START_POS:
+		reverse_direction()
+	if Input.is_action_just_pressed("obstacle_reverse"):
 		reverse_direction()
 
 
