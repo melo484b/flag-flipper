@@ -32,9 +32,6 @@ tile_data = PoolIntArray( -131057, 0, 65541, 65520, 0, 0, 65521, 0, 1, 65522, 0,
 [node name="walls" parent="level_movement_manager" groups=["WALL"] instance=ExtResource( 5 )]
 position = Vector2( -514, -300 )
 
-[node name="Position2D" type="Position2D" parent="level_movement_manager"]
-position = Vector2( -2, 244 )
-
 [node name="spawn_manager" parent="." instance=ExtResource( 4 )]
 
 [node name="death_area" parent="." instance=ExtResource( 6 )]

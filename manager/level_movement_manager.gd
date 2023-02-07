@@ -10,7 +10,7 @@ var ceiling_direction: int = 1
 var travel_speed: float = 0.25
 var speed_increment: float = 0.05
 
-
+onready var map_reverse_sfx: Node = $map_reverse
 onready var wall_tiles: TileMap = $walls
 onready var floor_tiles: TileMap = $floor
 onready var ceiling_tiles: TileMap = $ceiling
@@ -22,6 +22,7 @@ func _physics_process(_delta) -> void:
 	if ceiling_tiles.position > FLOOR_START_POS or floor_tiles.position < CEILING_START_POS:
 		reverse_direction()
 	if Input.is_action_just_pressed("obstacle_reverse"):
+		map_reverse_sfx.play()
 		reverse_direction()
 
 
